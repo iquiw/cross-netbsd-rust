@@ -1,4 +1,4 @@
-name: LLVM
+name: Rust
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build LLVM
+    name: Build Rust
     runs-on: ubuntu-latest
     container: iquiw/cross-netbsd:i386
     steps:
@@ -22,4 +22,4 @@ jobs:
 
       - name: Build
         run: |
-          python3 x.py --host x86_64-unknown-linux-gnu --target x86_64-unknown-linux-gnu build llvm
+          python3 x.py --host $HOSTS --target $HOSTS dist
