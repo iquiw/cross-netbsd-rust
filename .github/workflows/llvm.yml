@@ -1,0 +1,25 @@
+name: LLVM
+
+on:
+  push:
+    branches:
+      - master
+    # tags:
+    # - 'llvm/*'
+
+jobs:
+  build:
+    name: Build LLVM
+    runs-on: ubuntu-latest
+    container: iquiw/cross-netbsd:i386
+    steps:
+      - name: Checout rust
+        uses: actions/checkout@v2
+        with:
+          repository: rust-lang/rust
+          ref: 1.48.0
+          submodules: true
+
+      - name: Build
+        run: |
+          python3 x.py --host x86_64-unknown-linux-gnu --target x86_64-unknown-linux-gnu build llvm
